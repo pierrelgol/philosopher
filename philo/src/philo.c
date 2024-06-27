@@ -70,7 +70,7 @@ bool	philo_container_alloc(t_philo_container *const self,
 
 t_philo_container	*philo_container_create(const t_philo_config *const config)
 {
-	t_philo_container	self;
+	t_philo_container	*self;
 
 	self = (t_philo_container *)memory_alloc(sizeof(*self));
 	if (!self)
