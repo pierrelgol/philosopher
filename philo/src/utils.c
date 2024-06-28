@@ -12,23 +12,34 @@
 
 #include "philosopher.h"
 
-void report(pthread_mutex_t *stdout, const int64_t beg_time, const int64_t id, t_action_type activity)
+int64_t	time_ms(void)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+}
+
+void	report(pthread_mutex_t *stdout, const int64_t beg_time,
+		const int64_t id, t_action_type activity)
 {
 	pthread_mutex_lock(stdout);
 	if (activity == EATING)
-		printf("%ld %ld is eating\n", gettime_since_ms(beg_time), id);
+		printf("%ld %ld is eating\n", time_diff(beg_time), id);
 	else if (activity == TAKING_FORKS)
-		printf("%ld %ld has taken a fork\n", gettime_since_ms(beg_time), id);
+		printf("%ld %ld has taken a fork\n", time_diff(beg_time), id);
 	else if (activity == SLEEPING)
-		printf("%ld %ld is sleeping\n", gettime_since_ms(beg_time), id);
+		printf("%ld %ld is sleeping\n", time_diff(beg_time), id);
 	else if (activity == THINKING)
-		printf("%ld %ld is thinking\n", gettime_since_ms(beg_time), id);
+		printf("%ld %ld is thinking\n", time_diff(beg_time), id);
+	else if (activity == DEAD_OR_FULL)
+		printf("%ld all philosophers have eaten\n", time_diff(beg_time));
 	else
-		printf("%ld %ld died\n", gettime_since_ms(beg_time), id);
+		printf("%ld %ld died\n", time_diff(beg_time), id);
 	pthread_mutex_unlock(stdout);
 }
 
-void print_config(const t_philo_config *const self)
+void	print_config(const t_philo_config *const self)
 {
 	printf("--------------------------------\n");
 	printf("PHILO CONFIG :\n");

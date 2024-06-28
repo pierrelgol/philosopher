@@ -12,84 +12,85 @@
 
 #include "philosopher.h"
 
-bool supervisor_check_dead_philos(t_philo_container *const self, const uint64_t total)
+bool	philo_is_full(t_philo *self)
 {
-	uint64_t i;
+	bool	result;
 
-	i = 0;
-	while (i < total)
-	{
-		if ((gettime_since_ms(self->time_begin) - self->philosopers[i].time_last_meal) >= self->time_to_die &&
-		    !self->philosopers[i].is_eating)
-		{
-			report(&self->stdout, self->time_begin, self->philosopers[i].id, DEAD);
-			self->stop = true;
-			return (true);
-		}
-		++i;
-	}
-	return (false);
+	result = false;
+	pthread_mutex_lock(&self->eat_lock);
+	if (self->meal_count >= self->parent->meals_total)
+		result = true;
+	pthread_mutex_unlock(&self->eat_lock);
+	return (result);
 }
 
-bool supervisor_check_full_philos(t_philo_container *const self, const uint64_t total)
+bool	philo_is_dead(t_philo *self)
 {
-	uint64_t i;
+	bool	result;
 
-	i = 0;
-	while (i < total)
+	result = false;
+	pthread_mutex_lock(&self->eat_lock);
+	if ((self->time_last_meal - time_ms()) > self->parent->time_to_die)
 	{
-		if (self->philosopers[i].meal_count >= self->meals_total)
-		{
-			self->philosopers[i].stop = true;
-			pthread_mutex_lock(&self->lock);
-			self->philo_count -= 1;
-			pthread_mutex_unlock(&self->lock);
-			return (true);
-		}
-		++i;
+		report(&self->parent->write, self->parent->time_begin, self->id, DEAD);
+		pthread_mutex_lock(&self->parent->died);
+		self->parent->stop = true;
+		pthread_mutex_unlock(&self->parent->died);
+		result = true;
 	}
-	return (false);
+	pthread_mutex_unlock(&self->eat_lock);
+	return (result);
 }
 
-void *supervisor_monitor(void *arg)
+void	*supervisor_monitor(void *arg)
 {
-	t_philo_container *self;
+	t_philo_container	*self;
+	int64_t				i;
+	bool				all_full;
 
-	self = (t_philo_container *) arg;
+	self = (t_philo_container *)arg;
 	while (true)
 	{
-		pthread_mutex_lock(&self->lock);
-		if (supervisor_check_dead_philos(self, self->philo_total))
+		i = 0;
+		all_full = true;
+		while (i < self->philo_count)
 		{
-			pthread_mutex_unlock(&self->lock);
-			break;
+			if (philo_is_dead(&self->philosopers[i]))
+			{
+				report(&self->write, self->time_begin, self->philosopers[i].id,
+					DEAD);
+				return (NULL);
+			}
+			if (!philo_is_full(&self->philosopers[i]))
+				all_full = false;
 		}
-		if (self->meals_total != -1 && supervisor_check_full_philos(self, self->philo_total))
+		if (all_full)
 		{
-			pthread_mutex_unlock(&self->lock);
-			break;
+			report(&self->write, self->time_begin, 0, DEAD_OR_FULL);
+			return (NULL);
 		}
-		pthread_mutex_unlock(&self->lock);
+		usleep(100);
 	}
 	return (NULL);
 }
 
-void *supervisor_sync(void *arg)
+void	*supervisor_sync(void *arg)
 {
-	t_philo_container *self;
+	t_philo_container	*self;
 
-	self = (t_philo_container *) arg;
-	while (true)
+	self = (t_philo_container *)arg;
+	pthread_mutex_lock(&self->lock);
+	while (self->philo_count < self->philo_total)
 	{
-		pthread_mutex_lock(&self->lock);
-		if (self->philo_count == self->philo_total)
-		{
-			self->is_synced = true;
-			self->time_begin = timestamp();
-			pthread_mutex_unlock(&self->lock);
-			break;
-		}
 		pthread_mutex_unlock(&self->lock);
+		usleep(100);
+		pthread_mutex_lock(&self->lock);
 	}
-	return (supervisor_monitor(self));
+	self->is_synced = true;
+	pthread_mutex_lock(&self->time);
+	self->time_begin = time_ms();
+	pthread_mutex_unlock(&self->time);
+	pthread_mutex_unlock(&self->lock);
+	supervisor_monitor(self);
+	return (NULL);
 }

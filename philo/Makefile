@@ -2,8 +2,8 @@
 CC = gcc
 CFLAGS_RELEASE_SAFE = -Iinclude -Wall -Wextra -O2
 CFLAGS_RELEASE_FAST = -Iinclude -Wall -Wextra -O3 -mtune=native
-# CFLAGS_DEBUG = -Iinclude -Wall -Wextra -g3 -fno-omit-frame-pointer -fsanitize=address
-CFLAGS_DEBUG = -Iinclude -Wall -Wextra -g3 -fsanitize=thread
+CFLAGS_DEBUG = -Iinclude -Wall -Wextra -g3 -fno-omit-frame-pointer -fsanitize=address
+# CFLAGS_DEBUG = -Iinclude -Wall -Wextra -g3 -fsanitize=thread
 
 # Linking Flags
 LDFLAGS_RELEASE_SAFE = -lpthread

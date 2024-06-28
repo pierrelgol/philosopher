@@ -18,7 +18,9 @@ bool philo_container_init_mutexes(t_philo_container *const self, const uint64_t 
 
 	if (pthread_mutex_init(&self->lock, NULL) != 0)
 		return (false);
-	if (pthread_mutex_init(&self->stdout, NULL) != 0)
+	if (pthread_mutex_init(&self->write, NULL) != 0)
+		return (false);
+	if (pthread_mutex_init(&self->died, NULL) != 0)
 		return (false);
 	i = 0;
 	while (i < total)
@@ -49,7 +51,9 @@ bool philo_container_init_philo(t_philo_container *const self, const uint64_t to
 		philo[i].time_to_eat = self->time_to_eat;
 		philo[i].time_to_think = self->time_to_think;
 		philo[i].time_last_meal = 0;
-		philo[i].is_eating = false;
+		philo[i].is_dead = 0;
+		philo[i].is_full = 0;
+		pthread_mutex_init(&philo[i].eat_lock, NULL);
 		++i;
 	}
 	return (true);
@@ -80,6 +84,8 @@ t_philo_container *philo_container_create(const t_philo_config *const config)
 	self->meals_total = config->number_of_meals;
 	self->meals_count = 0;
 	self->philo_count = 0;
+	self->stop = false;
+	self->is_synced = false;
 	if (!philo_container_alloc(self, self->philo_total))
 		return (philo_container_destroy(self));
 	if (!philo_container_init_mutexes(self, self->philo_total))
@@ -93,22 +99,32 @@ t_philo_container *philo_container_destroy(t_philo_container *const self)
 {
 	int64_t i;
 
-	if (self)
+	if (!self)
+		return (NULL);
+	i = 0;
+	while (i < self->philo_total)
 	{
-		i = 0;
-		if (self->forks)
-		{
-			while (i < self->philo_total)
-				pthread_mutex_destroy(&self->forks[i++]);
-			memory_dealloc(self->forks);
-		}
-		if (self->philosopers)
-			memory_dealloc(self->philosopers);
-		if (self->tid)
-			memory_dealloc(self->tid);
-		pthread_mutex_destroy(&self->lock);
-		pthread_mutex_destroy(&self->stdout);
-		memory_dealloc(self);
+		pthread_mutex_lock(&self->forks[i]);
+		pthread_mutex_unlock(&self->forks[i]);
+		pthread_mutex_lock(&self->philosopers[i].eat_lock);
+		pthread_mutex_unlock(&self->philosopers[i].eat_lock);
+		++i;
 	}
+	i = 0;
+	while (i < self->philo_total)
+	{
+		pthread_mutex_destroy(&self->forks[i]);
+		pthread_mutex_destroy(&self->philosopers[i].eat_lock);
+		++i;
+	}
+	memory_dealloc(self->forks);
+	if (self->philosopers)
+		memory_dealloc(self->philosopers);
+	if (self->tid)
+		memory_dealloc(self->tid);
+	pthread_mutex_destroy(&self->lock);
+	pthread_mutex_destroy(&self->write);
+	pthread_mutex_destroy(&self->died);
+	memory_dealloc(self);
 	return (NULL);
 }

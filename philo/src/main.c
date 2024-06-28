@@ -12,13 +12,14 @@
 
 #include "philosopher.h"
 
-int32_t main(int32_t argc, char **argv)
+int32_t	main(int32_t argc, char **argv)
 {
-	t_philo_container *self;
-	t_philo_config     cfg;
+	t_philo_container	*self;
+	t_philo_config		cfg;
 
 	if (parse_philo_config(&cfg, argc, argv))
 	{
+		print_config(&cfg);
 		self = philo_container_create(&cfg);
 		if (!self)
 		{
@@ -30,6 +31,7 @@ int32_t main(int32_t argc, char **argv)
 			printf("runtime failure\n");
 			exit(1);
 		}
+		self = philo_container_destroy(self);
 	}
 	else
 		printf("inputs are invalid\n");
