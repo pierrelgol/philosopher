@@ -12,10 +12,10 @@
 
 #include "philosopher.h"
 
-int32_t	main(int32_t argc, char **argv)
+int32_t main(int32_t argc, char **argv)
 {
-	t_philo_container	*self;
-	t_philo_config		cfg;
+	t_philo_container *self;
+	t_philo_config     cfg;
 
 	if (parse_philo_config(&cfg, argc, argv))
 	{

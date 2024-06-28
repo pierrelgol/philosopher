@@ -12,20 +12,17 @@
 
 #include "philosopher.h"
 
-bool	supervisor_check_dead_philos(t_philo_container *const self,
-		const uint64_t total)
+bool supervisor_check_dead_philos(t_philo_container *const self, const uint64_t total)
 {
-	uint64_t	i;
+	uint64_t i;
 
 	i = 0;
 	while (i < total)
 	{
-		if ((gettime_since_ms(self->time_begin)
-				- self->philosopers[i].time_last_meal) >= self->time_to_die
-			&& !self->philosopers[i].is_eating)
+		if ((gettime_since_ms(self->time_begin) - self->philosopers[i].time_last_meal) >= self->time_to_die &&
+		    !self->philosopers[i].is_eating)
 		{
-			report(&self->stdout, self->time_begin, self->philosopers[i].id,
-				DEAD);
+			report(&self->stdout, self->time_begin, self->philosopers[i].id, DEAD);
 			self->stop = true;
 			return (true);
 		}
@@ -34,10 +31,9 @@ bool	supervisor_check_dead_philos(t_philo_container *const self,
 	return (false);
 }
 
-bool	supervisor_check_full_philos(t_philo_container *const self,
-		const uint64_t total)
+bool supervisor_check_full_philos(t_philo_container *const self, const uint64_t total)
 {
-	uint64_t	i;
+	uint64_t i;
 
 	i = 0;
 	while (i < total)
@@ -55,35 +51,34 @@ bool	supervisor_check_full_philos(t_philo_container *const self,
 	return (false);
 }
 
-void	*supervisor_monitor(void *arg)
+void *supervisor_monitor(void *arg)
 {
-	t_philo_container	*self;
+	t_philo_container *self;
 
-	self = (t_philo_container *)arg;
+	self = (t_philo_container *) arg;
 	while (true)
 	{
 		pthread_mutex_lock(&self->lock);
 		if (supervisor_check_dead_philos(self, self->philo_total))
 		{
 			pthread_mutex_unlock(&self->lock);
-			break ;
+			break;
 		}
-		if (self->meals_total != -1 && supervisor_check_full_philos(self,
-				self->philo_total))
+		if (self->meals_total != -1 && supervisor_check_full_philos(self, self->philo_total))
 		{
 			pthread_mutex_unlock(&self->lock);
-			break ;
+			break;
 		}
 		pthread_mutex_unlock(&self->lock);
 	}
 	return (NULL);
 }
 
-void	*supervisor_sync(void *arg)
+void *supervisor_sync(void *arg)
 {
-	t_philo_container	*self;
+	t_philo_container *self;
 
-	self = (t_philo_container *)arg;
+	self = (t_philo_container *) arg;
 	while (true)
 	{
 		pthread_mutex_lock(&self->lock);
@@ -92,7 +87,7 @@ void	*supervisor_sync(void *arg)
 			self->is_synced = true;
 			self->time_begin = timestamp();
 			pthread_mutex_unlock(&self->lock);
-			break ;
+			break;
 		}
 		pthread_mutex_unlock(&self->lock);
 	}

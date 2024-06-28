@@ -12,53 +12,7 @@
 
 #include "philosopher.h"
 
-// int64_t gettime(void)
-// {
-//     struct timespec ts;
-//     clock_gettime(CLOCK_MONOTONIC, &ts);
-//     return (ts.tv_sec * 1000 + ts.tv_nsec / 1000000);
-// }
-
-// int64_t gettime_since_ms(const int64_t beg)
-// {
-//     return (gettime() - beg);
-// }
-
-// void micro_sleep(int64_t time)
-// {
-//     int64_t start = gettime();
-//     while ((gettime() - start) < time)
-//     {
-//         usleep(time / 10);
-//     }
-// }
-
-int64_t	timestamp(void)
-{
-	struct timeval	time;
-
-	gettimeofday(&time, NULL);
-	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
-}
-
-int64_t	gettime_since_ms(const int64_t beg)
-{
-	return (timestamp() - beg);
-}
-
-void	micro_sleep(int64_t time)
-{
-	int64_t	start;
-
-	start = timestamp();
-	while (gettime_since_ms(start) < time)
-	{
-		usleep(50);
-	}
-}
-
-void	report(pthread_mutex_t *stdout, const int64_t beg_time,
-		const int64_t id, t_action_type activity)
+void report(pthread_mutex_t *stdout, const int64_t beg_time, const int64_t id, t_action_type activity)
 {
 	pthread_mutex_lock(stdout);
 	if (activity == EATING)
@@ -74,7 +28,7 @@ void	report(pthread_mutex_t *stdout, const int64_t beg_time,
 	pthread_mutex_unlock(stdout);
 }
 
-void	print_config(const t_philo_config *const self)
+void print_config(const t_philo_config *const self)
 {
 	printf("--------------------------------\n");
 	printf("PHILO CONFIG :\n");

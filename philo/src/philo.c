@@ -12,10 +12,9 @@
 
 #include "philosopher.h"
 
-bool	philo_container_init_mutexes(t_philo_container *const self,
-		const uint64_t total)
+bool philo_container_init_mutexes(t_philo_container *const self, const uint64_t total)
 {
-	uint64_t	i;
+	uint64_t i;
 
 	if (pthread_mutex_init(&self->lock, NULL) != 0)
 		return (false);
@@ -31,11 +30,10 @@ bool	philo_container_init_mutexes(t_philo_container *const self,
 	return (true);
 }
 
-bool	philo_container_init_philo(t_philo_container *const self,
-		const uint64_t total)
+bool philo_container_init_philo(t_philo_container *const self, const uint64_t total)
 {
-	t_philo		*philo;
-	uint64_t	i;
+	t_philo *philo;
+	uint64_t i;
 
 	i = 0;
 	philo = self->philosopers;
@@ -57,8 +55,7 @@ bool	philo_container_init_philo(t_philo_container *const self,
 	return (true);
 }
 
-bool	philo_container_alloc(t_philo_container *const self,
-		const uint64_t total)
+bool philo_container_alloc(t_philo_container *const self, const uint64_t total)
 {
 	self->philosopers = memory_alloc(total * sizeof(t_philo));
 	self->forks = memory_alloc(total * sizeof(pthread_mutex_t));
@@ -68,11 +65,11 @@ bool	philo_container_alloc(t_philo_container *const self,
 	return (true);
 }
 
-t_philo_container	*philo_container_create(const t_philo_config *const config)
+t_philo_container *philo_container_create(const t_philo_config *const config)
 {
-	t_philo_container	*self;
+	t_philo_container *self;
 
-	self = (t_philo_container *)memory_alloc(sizeof(*self));
+	self = (t_philo_container *) memory_alloc(sizeof(*self));
 	if (!self)
 		return (NULL);
 	self->philo_total = config->number_of_philosophers;
@@ -92,9 +89,9 @@ t_philo_container	*philo_container_create(const t_philo_config *const config)
 	return (self);
 }
 
-t_philo_container	*philo_container_destroy(t_philo_container *const self)
+t_philo_container *philo_container_destroy(t_philo_container *const self)
 {
-	int64_t	i;
+	int64_t i;
 
 	if (self)
 	{

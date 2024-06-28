@@ -1,0 +1,597 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fsanitize=thread",
+      "-c",
+      "-o",
+      "library/.obj/main.o",
+      "src/main.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/src/main.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/main.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fsanitize=thread",
+      "-c",
+      "-o",
+      "library/.obj/parsing.o",
+      "src/parsing.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/src/parsing.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/parsing.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fsanitize=thread",
+      "-c",
+      "-o",
+      "library/.obj/philo.o",
+      "src/philo.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/src/philo.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/philo.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fsanitize=thread",
+      "-c",
+      "-o",
+      "library/.obj/routines.o",
+      "src/routines.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/src/routines.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/routines.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fsanitize=thread",
+      "-c",
+      "-o",
+      "library/.obj/simulation.o",
+      "src/simulation.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/src/simulation.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/simulation.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fsanitize=thread",
+      "-c",
+      "-o",
+      "library/.obj/supervisor.o",
+      "src/supervisor.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/src/supervisor.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/supervisor.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fsanitize=thread",
+      "-c",
+      "-o",
+      "library/.obj/utils.o",
+      "src/utils.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/src/utils.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/utils.o"
+  },
+  {
+    "arguments": [
+      "/home/linuxbrew/.linuxbrew/bin/clang",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fno-omit-frame-pointer",
+      "-c",
+      "-o",
+      ".obj/essentials_1.o",
+      "src/essentials_1.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo/library",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/library/src/essentials_1.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/essentials_1.o"
+  },
+  {
+    "arguments": [
+      "/home/linuxbrew/.linuxbrew/bin/clang",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fno-omit-frame-pointer",
+      "-c",
+      "-o",
+      ".obj/essentials_2.o",
+      "src/essentials_2.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo/library",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/library/src/essentials_2.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/essentials_2.o"
+  },
+  {
+    "arguments": [
+      "/home/linuxbrew/.linuxbrew/bin/clang",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fno-omit-frame-pointer",
+      "-c",
+      "-o",
+      ".obj/essentials_3.o",
+      "src/essentials_3.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo/library",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/library/src/essentials_3.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/essentials_3.o"
+  },
+  {
+    "arguments": [
+      "/home/linuxbrew/.linuxbrew/bin/clang",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fno-omit-frame-pointer",
+      "-c",
+      "-o",
+      ".obj/essentials_4.o",
+      "src/essentials_4.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo/library",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/library/src/essentials_4.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/essentials_4.o"
+  },
+  {
+    "arguments": [
+      "/home/linuxbrew/.linuxbrew/bin/clang",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fno-omit-frame-pointer",
+      "-c",
+      "-o",
+      ".obj/essentials_5.o",
+      "src/essentials_5.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo/library",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/library/src/essentials_5.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/essentials_5.o"
+  },
+  {
+    "arguments": [
+      "/home/linuxbrew/.linuxbrew/bin/clang",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fno-omit-frame-pointer",
+      "-c",
+      "-o",
+      ".obj/essentials_6.o",
+      "src/essentials_6.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo/library",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/library/src/essentials_6.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/essentials_6.o"
+  },
+  {
+    "arguments": [
+      "/home/linuxbrew/.linuxbrew/bin/clang",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fno-omit-frame-pointer",
+      "-c",
+      "-o",
+      ".obj/essentials_7.o",
+      "src/essentials_7.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo/library",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/library/src/essentials_7.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/essentials_7.o"
+  },
+  {
+    "arguments": [
+      "/home/linuxbrew/.linuxbrew/bin/clang",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fno-omit-frame-pointer",
+      "-c",
+      "-o",
+      ".obj/essentials_8.o",
+      "src/essentials_8.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo/library",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/library/src/essentials_8.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/essentials_8.o"
+  },
+  {
+    "arguments": [
+      "/home/linuxbrew/.linuxbrew/bin/clang",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fno-omit-frame-pointer",
+      "-c",
+      "-o",
+      ".obj/hashmap_1.o",
+      "src/hashmap_1.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo/library",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/library/src/hashmap_1.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/hashmap_1.o"
+  },
+  {
+    "arguments": [
+      "/home/linuxbrew/.linuxbrew/bin/clang",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fno-omit-frame-pointer",
+      "-c",
+      "-o",
+      ".obj/hashmap_2.o",
+      "src/hashmap_2.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo/library",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/library/src/hashmap_2.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/hashmap_2.o"
+  },
+  {
+    "arguments": [
+      "/home/linuxbrew/.linuxbrew/bin/clang",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fno-omit-frame-pointer",
+      "-c",
+      "-o",
+      ".obj/hashmap_3.o",
+      "src/hashmap_3.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo/library",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/library/src/hashmap_3.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/hashmap_3.o"
+  },
+  {
+    "arguments": [
+      "/home/linuxbrew/.linuxbrew/bin/clang",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fno-omit-frame-pointer",
+      "-c",
+      "-o",
+      ".obj/list_1.o",
+      "src/list_1.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo/library",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/library/src/list_1.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/list_1.o"
+  },
+  {
+    "arguments": [
+      "/home/linuxbrew/.linuxbrew/bin/clang",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fno-omit-frame-pointer",
+      "-c",
+      "-o",
+      ".obj/list_2.o",
+      "src/list_2.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo/library",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/library/src/list_2.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/list_2.o"
+  },
+  {
+    "arguments": [
+      "/home/linuxbrew/.linuxbrew/bin/clang",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fno-omit-frame-pointer",
+      "-c",
+      "-o",
+      ".obj/list_3.o",
+      "src/list_3.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo/library",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/library/src/list_3.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/list_3.o"
+  },
+  {
+    "arguments": [
+      "/home/linuxbrew/.linuxbrew/bin/clang",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fno-omit-frame-pointer",
+      "-c",
+      "-o",
+      ".obj/list_4.o",
+      "src/list_4.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo/library",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/library/src/list_4.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/list_4.o"
+  },
+  {
+    "arguments": [
+      "/home/linuxbrew/.linuxbrew/bin/clang",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fno-omit-frame-pointer",
+      "-c",
+      "-o",
+      ".obj/list_5.o",
+      "src/list_5.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo/library",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/library/src/list_5.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/list_5.o"
+  },
+  {
+    "arguments": [
+      "/home/linuxbrew/.linuxbrew/bin/clang",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fno-omit-frame-pointer",
+      "-c",
+      "-o",
+      ".obj/list_6.o",
+      "src/list_6.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo/library",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/library/src/list_6.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/list_6.o"
+  },
+  {
+    "arguments": [
+      "/home/linuxbrew/.linuxbrew/bin/clang",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fno-omit-frame-pointer",
+      "-c",
+      "-o",
+      ".obj/trie_1.o",
+      "src/trie_1.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo/library",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/library/src/trie_1.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/trie_1.o"
+  },
+  {
+    "arguments": [
+      "/home/linuxbrew/.linuxbrew/bin/clang",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fno-omit-frame-pointer",
+      "-c",
+      "-o",
+      ".obj/trie_2.o",
+      "src/trie_2.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo/library",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/library/src/trie_2.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/trie_2.o"
+  },
+  {
+    "arguments": [
+      "/home/linuxbrew/.linuxbrew/bin/clang",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fno-omit-frame-pointer",
+      "-c",
+      "-o",
+      ".obj/trie_3.o",
+      "src/trie_3.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo/library",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/library/src/trie_3.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/trie_3.o"
+  },
+  {
+    "arguments": [
+      "/home/linuxbrew/.linuxbrew/bin/clang",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fno-omit-frame-pointer",
+      "-c",
+      "-o",
+      ".obj/vector_1.o",
+      "src/vector_1.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo/library",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/library/src/vector_1.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/vector_1.o"
+  },
+  {
+    "arguments": [
+      "/home/linuxbrew/.linuxbrew/bin/clang",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fno-omit-frame-pointer",
+      "-c",
+      "-o",
+      ".obj/vector_2.o",
+      "src/vector_2.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo/library",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/library/src/vector_2.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/vector_2.o"
+  },
+  {
+    "arguments": [
+      "/home/linuxbrew/.linuxbrew/bin/clang",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fno-omit-frame-pointer",
+      "-c",
+      "-o",
+      ".obj/vector_3.o",
+      "src/vector_3.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo/library",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/library/src/vector_3.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/vector_3.o"
+  },
+  {
+    "arguments": [
+      "/home/linuxbrew/.linuxbrew/bin/clang",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fno-omit-frame-pointer",
+      "-c",
+      "-o",
+      ".obj/vector_4.o",
+      "src/vector_4.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo/library",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/library/src/vector_4.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/vector_4.o"
+  },
+  {
+    "arguments": [
+      "/home/linuxbrew/.linuxbrew/bin/clang",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fno-omit-frame-pointer",
+      "-c",
+      "-o",
+      ".obj/vector_5.o",
+      "src/vector_5.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo/library",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/library/src/vector_5.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/vector_5.o"
+  },
+  {
+    "arguments": [
+      "/home/linuxbrew/.linuxbrew/bin/clang",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fno-omit-frame-pointer",
+      "-c",
+      "-o",
+      ".obj/vector_6.o",
+      "src/vector_6.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo/library",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/library/src/vector_6.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/vector_6.o"
+  },
+  {
+    "arguments": [
+      "/home/linuxbrew/.linuxbrew/bin/clang",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fno-omit-frame-pointer",
+      "-c",
+      "-o",
+      ".obj/vector_7.o",
+      "src/vector_7.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo/library",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/library/src/vector_7.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/vector_7.o"
+  },
+  {
+    "arguments": [
+      "/home/linuxbrew/.linuxbrew/bin/clang",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-g3",
+      "-fno-omit-frame-pointer",
+      "-c",
+      "-o",
+      ".obj/vector_8.o",
+      "src/vector_8.c"
+    ],
+    "directory": "/home/pollivie/workspace/school/philosopher/philo/library",
+    "file": "/home/pollivie/workspace/school/philosopher/philo/library/src/vector_8.c",
+    "output": "/home/pollivie/workspace/school/philosopher/philo/library/.obj/vector_8.o"
+  }
+]

@@ -12,11 +12,11 @@
 
 #include "philosopher.h"
 
-static int64_t	parse_number(const char *const number)
+static int64_t parse_number(const char *const number)
 {
-	int64_t	result;
-	int64_t	sign;
-	int64_t	i;
+	int64_t result;
+	int64_t sign;
+	int64_t i;
 
 	if (!number)
 		return (0);
@@ -38,7 +38,7 @@ static int64_t	parse_number(const char *const number)
 	return (result * sign);
 }
 
-bool	parse_philo_config_4(t_philo_config *const out_result, char **argv)
+bool parse_philo_config_4(t_philo_config *const out_result, char **argv)
 {
 	out_result->number_of_philosophers = parse_number(argv[1]);
 	out_result->number_of_meals = parse_number(argv[5]);
@@ -49,7 +49,7 @@ bool	parse_philo_config_4(t_philo_config *const out_result, char **argv)
 	return (true);
 }
 
-bool	parse_philo_config_5(t_philo_config *const out_result, char **argv)
+bool parse_philo_config_5(t_philo_config *const out_result, char **argv)
 {
 	out_result->number_of_philosophers = parse_number(argv[1]);
 	out_result->number_of_meals = parse_number(argv[5]);
@@ -62,20 +62,19 @@ bool	parse_philo_config_5(t_philo_config *const out_result, char **argv)
 	return (true);
 }
 
-bool	sanitize_philo_config(t_philo_config *const out_result)
+bool sanitize_philo_config(t_philo_config *const out_result)
 {
-	int64_t	time_to_think;
+	int64_t time_to_think;
 
-	time_to_think = out_result->time_to_die - (out_result->time_to_eat
-			+ out_result->time_to_sleep);
+	time_to_think =
+	    out_result->time_to_die - (out_result->time_to_eat + out_result->time_to_sleep);
 	if (time_to_think <= 0)
 		return (false);
 	out_result->time_to_think = time_to_think;
-	if (out_result->number_of_philosophers < 1
-		|| out_result->number_of_philosophers > 200)
+	if (out_result->number_of_philosophers < 1 || out_result->number_of_philosophers > 200)
 		return (false);
-	if (out_result->number_of_meals != -1 && (out_result->number_of_meals < 1
-			|| out_result->number_of_meals > INT32_MAX))
+	if (out_result->number_of_meals != -1 &&
+	    (out_result->number_of_meals < 1 || out_result->number_of_meals > INT32_MAX))
 		return (false);
 	if (out_result->time_to_die < 0 || out_result->time_to_die > INT32_MAX)
 		return (false);
@@ -86,8 +85,7 @@ bool	sanitize_philo_config(t_philo_config *const out_result)
 	return (true);
 }
 
-bool	parse_philo_config(t_philo_config *const out_result, int32_t argc,
-		char **argv)
+bool parse_philo_config(t_philo_config *const out_result, int32_t argc, char **argv)
 {
 	if (argc == 5)
 		parse_philo_config_4(out_result, argv);
