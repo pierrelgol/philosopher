@@ -10,44 +10,55 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosopher.h"
+#include "philo.h"
 
-int64_t	time_ms(void)
+int64_t	timestamp(void)
 {
 	struct timeval	time;
 
 	gettimeofday(&time, NULL);
-	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
-void	report(pthread_mutex_t *stdout, const int64_t beg_time,
-		const int64_t id, t_action_type activity)
+void	safe_sleep(t_philo *const self, const int64_t ammount)
 {
-	pthread_mutex_lock(stdout);
-	if (activity == EATING)
-		printf("%ld %ld is eating\n", time_diff(beg_time), id);
-	else if (activity == TAKING_FORKS)
-		printf("%ld %ld has taken a fork\n", time_diff(beg_time), id);
-	else if (activity == SLEEPING)
-		printf("%ld %ld is sleeping\n", time_diff(beg_time), id);
-	else if (activity == THINKING)
-		printf("%ld %ld is thinking\n", time_diff(beg_time), id);
-	else if (activity == DEAD_OR_FULL)
-		printf("%ld all philosophers have eaten\n", time_diff(beg_time));
-	else
-		printf("%ld %ld died\n", time_diff(beg_time), id);
-	pthread_mutex_unlock(stdout);
+	int64_t	total_time;
+
+	total_time = timestamp() + ammount;
+	while (timestamp() < total_time)
+	{
+		usleep(100);
+		pthread_mutex_lock(&self->parent->died_lock);
+		if (self->parent->philo_died == true)
+		{
+			pthread_mutex_unlock(&self->parent->died_lock);
+			break ;
+		}
+		pthread_mutex_unlock(&self->parent->died_lock);
+	}
 }
 
 void	print_config(const t_philo_config *const self)
 {
 	printf("--------------------------------\n");
 	printf("PHILO CONFIG :\n");
-	printf("number_of_philosophers : %ld\n", self->number_of_philosophers);
+	printf("number_of_philosophers : %ld\n", self->number_of_philosopher);
 	printf("time_to_die            : %ld ms\n", self->time_to_die);
 	printf("time_to_eat            : %ld ms\n", self->time_to_eat);
 	printf("time_to_sleep          : %ld ms\n", self->time_to_sleep);
 	printf("time_to_think          : %ld ms\n", self->time_to_think);
 	printf("number_of_meals        : %ld\n", self->number_of_meals);
 	printf("--------------------------------\n");
+}
+
+bool	philo_need_to_stop(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->parent->died_lock);
+	if (philo->parent->philo_died == true)
+	{
+		pthread_mutex_unlock(&philo->parent->died_lock);
+		return (true);
+	}
+	pthread_mutex_unlock(&philo->parent->died_lock);
+	return (false);
 }

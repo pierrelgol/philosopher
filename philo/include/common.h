@@ -5,91 +5,70 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pollivie <pollivie.student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 21:01:05 by pollivie          #+#    #+#             */
-/*   Updated: 2024/06/27 21:01:05 by pollivie         ###   ########.fr       */
+/*   Created: 2024/06/29 12:35:33 by pollivie          #+#    #+#             */
+/*   Updated: 2024/06/29 12:35:34 by pollivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COMMON_H
-#define COMMON_H
+# define COMMON_H
 
-#include "../library/include/slib.h"
-#include <pthread.h>
-#include <stdbool.h>
-#include <stdint.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/time.h>
-#include <unistd.h>
+# include <pthread.h>
+# include <stdbool.h>
+# include <stdint.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <sys/time.h>
+# include <unistd.h>
 
-#ifndef CPU_FREQ_HZ
-#define CPU_FREQ_HZ 3200000000ULL
-#endif
+# ifndef MAX_PHILO
+#  define MAX_PHILO 200
+# endif
 
-typedef struct s_philo_config    t_philo_config;
-typedef struct s_philo           t_philo;
-typedef struct s_philo_container t_philo_container;
+typedef struct s_philo				t_philo;
+typedef struct s_philo_config		t_philo_config;
+typedef struct s_philo_container	t_philo_container;
 
-typedef enum e_action_type
+struct								s_philo_config
 {
-	SLEEPING,
-	EATING,
-	TAKING_FORKS,
-	THINKING,
-	DEAD,
-	DEAD_OR_FULL,
-} t_action_type;
-
-struct s_philo_config
-{
-	int64_t number_of_philosophers;
-	int64_t time_to_die;
-	int64_t time_to_eat;
-	int64_t time_to_sleep;
-	int64_t time_to_think;
-	int64_t number_of_meals;
-	bool    is_valid;
+	int64_t							number_of_philosopher;
+	int64_t							number_of_meals;
+	int64_t							time_to_die;
+	int64_t							time_to_eat;
+	int64_t							time_to_sleep;
+	int64_t							time_to_think;
 };
 
-struct s_philo_container
+struct								s_philo
 {
-	pthread_t        supervisor;
-	pthread_t       *tid;
-	pthread_mutex_t *forks;
-	pthread_mutex_t  lock;
-	pthread_mutex_t  time;
-	pthread_mutex_t  write;
-	pthread_mutex_t  died;
-	t_philo         *philosopers;
-	int64_t          philo_total;
-	int64_t          meals_total;
-	int64_t          philo_count;
-	int64_t          meals_count;
-	int64_t          time_begin;
-	int64_t          time_to_die;
-	int64_t          time_to_eat;
-	int64_t          time_to_sleep;
-	int64_t          time_to_think;
-	bool             is_synced;
-	bool             stop;
+	t_philo_container				*parent;
+	pthread_mutex_t					*right_fork;
+	pthread_mutex_t					eating_lock;
+	pthread_mutex_t					*left_fork;
+	pthread_t						*thread;
+	int64_t							id;
+	int64_t							time_last_meal;
+	int64_t							meal_count;
 };
 
-struct s_philo
+struct								s_philo_container
 {
-	t_philo_container *parent;
-	pthread_mutex_t   *left_fork;
-	pthread_mutex_t   *right_fork;
-	pthread_t         *tid;
-	int64_t            id;
-	int64_t            time_to_die;
-	int64_t            time_to_sleep;
-	int64_t            time_to_eat;
-	int64_t            time_to_think;
-	int64_t            time_last_meal;
-	int64_t            meal_count;
-	pthread_mutex_t    eat_lock;
-	bool               is_dead;
-	bool               is_full;
+	int64_t							philo_total;
+	int64_t							philo_count;
+	int64_t							time_to_die;
+	int64_t							time_to_eat;
+	int64_t							time_to_sleep;
+	int64_t							time_to_think;
+	int64_t							meals_total;
+	int64_t							time_begin;
+	int64_t							philo_died;
+	pthread_mutex_t					time_lock;
+	pthread_mutex_t					died_lock;
+	pthread_mutex_t					write_lock;
+	pthread_mutex_t					forks[MAX_PHILO];
+	t_philo							philos[MAX_PHILO];
+	pthread_t						threads[MAX_PHILO + 1];
 };
 
 #endif

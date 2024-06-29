@@ -1,70 +1,41 @@
-# Compiler and Flags
-CC = gcc
-CFLAGS_RELEASE_SAFE = -Iinclude -Wall -Wextra -O2
-CFLAGS_RELEASE_FAST = -Iinclude -Wall -Wextra -O3 -mtune=native
-CFLAGS_DEBUG = -Iinclude -Wall -Wextra -g3 -fno-omit-frame-pointer -fsanitize=address
-# CFLAGS_DEBUG = -Iinclude -Wall -Wextra -g3 -fsanitize=thread
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: pollivie <pollivie.student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/06/29 10:02:39 by pollivie          #+#    #+#              #
+#    Updated: 2024/06/29 10:02:39 by pollivie         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-# Linking Flags
-LDFLAGS_RELEASE_SAFE = -lpthread
-LDFLAGS_RELEASE_FAST = -lpthread
-LDFLAGS_DEBUG = -lpthread
-
-# Directories
-LIBRARY_DIR = library
-SRC_DIR = src
-OBJ_DIR = $(LIBRARY_DIR)/.obj
-
-# Target Executable
+CC = clang
+CFLAGS = -Iinclude -Wall -Wextra -O3
+LDFLAGS = -lpthread
 TARGET = philo
+SRC_DIR = src
+OBJ_DIR = obj
 
-# Source files
 SRCS = $(wildcard $(SRC_DIR)/*.c)
 OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 
-# Libraries
-LIBS = $(LIBRARY_DIR)/libslib.a
+.PHONY: all clean fclean re
 
-# Progress Tracker
-TOTAL := $(words $(SRCS))
-CURRENT := 0
-
-.PHONY: all clean fclean re debug release_safe release_fast
-
-.DEFAULT_GOAL := debug
-
-all: CFLAGS = $(CFLAGS_DEBUG)
-all: LDFLAGS = $(LDFLAGS_DEBUG)
 all: $(TARGET)
 
-debug: CFLAGS = $(CFLAGS_DEBUG)
-debug: LDFLAGS = $(LDFLAGS_DEBUG)
-debug: $(TARGET)
-
-release_safe: CFLAGS = $(CFLAGS_RELEASE_SAFE)
-release_safe: LDFLAGS = $(LDFLAGS_RELEASE_SAFE)
-release_safe: $(TARGET)
-
-release_fast: CFLAGS = $(CFLAGS_RELEASE_FAST)
-release_fast: LDFLAGS = $(LDFLAGS_RELEASE_FAST)
-release_fast: $(TARGET)
-
-$(TARGET): $(OBJS) $(LIBS)
+$(TARGET): $(OBJS)
 	@$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(LIBS):
-	$(MAKE) -s -C $(LIBRARY_DIR)
-
 clean:
-	@$(MAKE) -s -C $(LIBRARY_DIR) clean 
 	@rm -rf $(OBJ_DIR)
 
 fclean: clean
-	@$(MAKE) -s -C $(LIBRARY_DIR) fclean 
 	@rm -f $(TARGET)
 
 re: fclean all
+
